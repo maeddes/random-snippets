@@ -10,7 +10,7 @@ function copylist
                            echo ignored!
                      else
                            echo cp $src$line $dest$line
-                           cp $src$file $dest$file
+                           cp $src$line $dest$line
                      end
                end < $file
          end
