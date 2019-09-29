@@ -2,15 +2,17 @@
 helm init
 helm init --service-account tiller
 helm --upgrade
+helm repo update
 
 git clone https://github.com/istio/istio
-helm repo update
+cd istio
 
 kubectl apply -f install/kubernetes/helm/helm-service-account.yaml
 
 helm dep update install/kubernetes/helm/istio
 helm install install/kubernetes/helm/istio-init --name istio-init --namespace istio-system
 kubectl get crds | grep 'istio.io' | wc -l
+-> 23
 kubectl label namespace default istio-injection=enabled
 helm install install/kubernetes/helm/istio --name istio --namespace istio-system
 
