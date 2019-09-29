@@ -26,11 +26,16 @@ kubectl exec -it $(kubectl get pod -l app=ratings -o jsonpath='{.items[0].metada
 -> <title>Simple Bookstore App</title>
 
 export INGRESS_HOST=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+-> none ?? 
+export INGRESS_HOST=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+-> localhost
 export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].port}')
+-> 80
 export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].port}')
 export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
 
 curl -s http://${GATEWAY_URL}/productpage | grep -o "<title>.*</title>"
+curl -s http://localhost/productpage | grep -o "<title>.*</title>"
 
 kubectl delete -f samples/bookinfo/platform/kube/bookinfo.yaml
 kubectl delete -f samples/bookinfo/networking/bookinfo-gateway.yaml
