@@ -1,0 +1,16 @@
+gcloud projects list
+gcloud info
+gcloud
+history | grep gcloud
+gcloud config set compute/region europe-west1
+gcloud compute regions list
+gcloud config list
+gcloud config set core/project mhs-test-XXX
+gcloud config configurations list
+gcloud config get-value core/project
+gcloud config get-value compute/region
+gcloud components list
+gcloud project list
+gcloud list
+gcloud auth login
+gcloud auth
