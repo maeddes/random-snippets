@@ -83,3 +83,14 @@ Run it `docker run -i --rm -p 8080:8080 maeddes/quarkus-hello`
 2019-10-29 14:33:30,329 INFO  [io.quarkus] (main) Installed features: [cdi, resteasy]
 2019-10-29 14:33:53,250 INFO  [io.quarkus] (main) knative-hello stopped in 0.010s
 ```
+
+Push it `docker push maeddes/quarkus-knative`
+
+```
+The push refers to repository [docker.io/maeddes/quarkus-hello]
+3c6b2440eea8: Pushed
+19172b632b9c: Pushing   17.2MB/22.78MB
+534b795a7ddf: Mounted from maeddes/quarkus-knative
+b6f081e4b2b6: Mounted from maeddes/quarkus-knative
+d8e1f35641ac: Mounted from maeddes/quarkus-knative
+```
