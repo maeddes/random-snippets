@@ -1,4 +1,4 @@
-* Code
+# Code
 
 Run mvn command for hello-world project
 
@@ -48,7 +48,7 @@ Edit the test class
     }
 ```
 
-* Docker
+# Docker
 
 Pre-build
 `mvn package -Pnative -Dnative-image.docker-build=true` (takes a bit)
