@@ -97,6 +97,20 @@ curl -H "Host: quarkus-knative.default.example.com" 51.145.133.17/fail
 dial tcp 127.0.0.1:8080: connect: connection refused
 ```
 
+Mass scale
+
+Edit the configuration `kubectl edit configuration.serving.knative.dev/quarkus-knative`
+
+Set
+```yaml
+spec:
+  template:
+    spec:
+      containerConcurrency: 2
+```
+
+Observe the change in the revisions!
+
 Log output
 
 `stern "quarkus-knative*"`
@@ -112,14 +126,30 @@ Alternative use yaml file:
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: helloworld-java-spring
+  name: quarkus-knative
   namespace: default
 spec:
   template:
     spec:
       containers:
-      - image: docker.io/maeddes/helloworld-java-spring
+      - image: docker.io/maeddes/quarkus-hello
         env:
         - name: property
-          value: "Spring Boot Sample v1"
+          value: "value"
+ ```
+ 
+ Backup
+ 
+ ```yaml
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: quarkus-knative
+  namespace: default
+spec:
+  template:
+    spec:
+      containerConcurrency: 5
+      containers:
+      - image: maeddes/quarkus-hello
  ```
