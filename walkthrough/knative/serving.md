@@ -99,7 +99,7 @@ dial tcp 127.0.0.1:8080: connect: connection refused
 
 Mass scale
 
-Edit the configuration `kubectl edit configuration.serving.knative.dev/quarkus-knative`
+Edit the configuration `kubectl edit ksvc quarkus-knative`
 
 Set
 ```yaml
@@ -111,11 +111,36 @@ spec:
 
 Observe the change in the revisions!
 
+```
+kn revision list
+NAME                    SERVICE           AGE   CONDITIONS   READY   REASON
+quarkus-knative-csmr2   quarkus-knative   13m   4 OK / 4     True
+quarkus-knative-fntql   quarkus-knative   29m   3 OK / 4     True
+quarkus-knative-hj24b   quarkus-knative   27m   3 OK / 4     True
+quarkus-knative-trwpc   quarkus-knative   13m   3 OK / 4     True
+quarkus-knative-vkhnm   quarkus-knative   18m   3 OK / 4     True
+```
+
+Change a revision (complicated) in ksvc
+
+```yaml
+spec:
+  release:
+    revisions: ["quarkus-knative-fntql"]
+    configuration:
+      revisionTemplate:
+        spec:
+          container:
+            image: docker.io/maeddes/quarkus-hello
+```            
+
 Log output
 
 `stern "quarkus-knative*"`
 
+Cleanup
 
+`kubectl delete ksvc quarkus-knative`
 
 
 
