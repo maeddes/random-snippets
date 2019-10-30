@@ -40,6 +40,72 @@ NAME                                                    READY   STATUS    RESTAR
 pod/quarkus-knative-6bwrv-deployment-6c59599f5b-4n98v   2/2     Running   0          55s
 ```
 
+After a while watch it going back to zero instances
+
+```
+NAME                                                     READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.extensions/quarkus-knative-6bwrv-deployment   0/0     0            0           9m29s
+
+NAME                                                                DESIRED   CURRENT   READY   AGE
+replicaset.extensions/quarkus-knative-6bwrv-deployment-6c59599f5b   0         0         0       9m29s
+
+NAME                                        URL                                          READY   REASON
+route.serving.knative.dev/quarkus-knative   http://quarkus-knative.default.example.com   True
+```
+
+(New window) Identify route
+
+```
+kubectl get route quarkus-knative -o jsonpath="{.status.url}"
+http://quarkus-knative.default.example.com
+```
+
+Identify IP/host if Istio Ingress gateway
+
+```
+kubectl get svc istio-ingressgateway -n istio-system -o jsonpath="{.status.loadBalancer.ingress[0].ip}"
+51.145.133.17
+```
+
+Compose it to cURL call
+
+```
+curl -H "Host: quarkus-knative.default.example.com" 51.145.133.17/hello
+Hello World!
+```
+
+Wrap into while loop
+
+```
+while true; 
+  do 
+    curl -H "Host: quarkus-knative.default.example.com" 51.145.133.17/hello;
+    sleep 1;
+    echo;
+  done
+
+Hello World!
+Hello World!
+Hello World!
+Hello World!
+```
+
+Kill instances
+
+```
+curl -H "Host: quarkus-knative.default.example.com" 51.145.133.17/fail
+dial tcp 127.0.0.1:8080: connect: connection refused
+```
+
+Log output
+
+`stern "quarkus-knative*"`
+
+
+
+
+
+
 Alternative use yaml file:
 
 ```yaml
@@ -52,8 +118,8 @@ spec:
   template:
     spec:
       containers:
-      - image: docker.io/{username}/helloworld-java-spring
+      - image: docker.io/maeddes/helloworld-java-spring
         env:
-        - name: TARGET
+        - name: property
           value: "Spring Boot Sample v1"
  ```
