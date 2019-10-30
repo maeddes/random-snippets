@@ -132,7 +132,19 @@ spec:
         spec:
           container:
             image: docker.io/maeddes/quarkus-hello
-```            
+```       
+
+Split traffic
+
+```yaml
+  traffic:
+  - latestRevision: false
+    percent: 50
+    revisionName: quarkus-knative-9l9h7
+  - latestRevision: false
+    percent: 50
+    revisionName: quarkus-knative-5gbt5
+ ```
 
 Log output
 
@@ -141,8 +153,6 @@ Log output
 Cleanup
 
 `kubectl delete ksvc quarkus-knative`
-
-
 
 
 Alternative use yaml file:
