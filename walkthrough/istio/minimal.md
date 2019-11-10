@@ -7,6 +7,10 @@ Create namespace:
 
 `kubectl create namespace istio-system`
 
+Download (not sure if required):
+
+`curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.3.4 sh -\n`
+
 Install CRDs:
 
 `helm template install/kubernetes/helm/istio-init --name istio-init --namespace istio-system | kubectl apply -f -`
@@ -19,8 +23,9 @@ Install minimal Istio setup:
 
 `helm template install/kubernetes/helm/istio --name istio --namespace istio-system \
     --values install/kubernetes/helm/istio/values-istio-minimal.yaml | kubectl apply -f -`
-    
-    
+
+Validate:
+
 ```
 kubectl get svc -n istio-system
 
