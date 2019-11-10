@@ -26,6 +26,7 @@ Install minimal Istio setup:
 
 Validate:
 
+Services:
 ```
 kubectl get svc -n istio-system
 
@@ -40,18 +41,24 @@ istio-telemetry          ClusterIP      10.111.42.165    <none>        9091/TCP,
 prometheus               ClusterIP      10.108.79.243    <none>        9090/TCP                                                                                                                                     5m2s
 ```
 
+Pods:
+```
+kubectl get pods -n istio-system
 
----
-
-Download:
-
-'curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.3.4 sh -\n'
-
-'cd istio-1.3.4'
-
-'export PATH=$PWD/bin:$PATH'
-
-'for i in install/kubernetes/helm/istio-init/files/crd*yaml; do kubectl apply -f $i; done'
+NAME                                      READY   STATUS      RESTARTS   AGE
+istio-citadel-555bff45bf-trdd9            1/1     Running     0          10m
+istio-galley-7f8b6db7d7-nnf8l             1/1     Running     0          10m
+istio-ingressgateway-5ddbcf57f4-q5lkw     1/1     Running     0          10m
+istio-init-crd-10-1.3.4-fnflq             0/1     Completed   0          13m
+istio-init-crd-11-1.3.4-tw6cp             0/1     Completed   0          13m
+istio-init-crd-12-1.3.4-5r758             0/1     Completed   0          13m
+istio-pilot-76d457885b-pf2z7              2/2     Running     0          10m
+istio-policy-598564cc7d-bzrx7             2/2     Running     3          10m
+istio-security-post-install-1.3.4-s5m4k   0/1     Completed   0          10m
+istio-sidecar-injector-65d5f8db56-fkhpl   1/1     Running     0          10m
+istio-telemetry-59bf8b5b5f-xg4sw          2/2     Running     3          10m
+prometheus-7d7b9f7844-8klnp               1/1     Running     0          10m
+```
 
 
 
