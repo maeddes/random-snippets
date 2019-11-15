@@ -102,6 +102,7 @@ Mass scale
 Edit the configuration `kubectl edit ksvc quarkus-knative`
 
 Set
+
 ```yaml
 spec:
   template:
@@ -144,7 +145,7 @@ Split traffic
   - latestRevision: false
     percent: 50
     revisionName: quarkus-knative-5gbt5
- ```
+```
 
 Log output
 
@@ -171,11 +172,11 @@ spec:
         env:
         - name: property
           value: "value"
- ```
+```
  
  Backup
  
- ```yaml
+```yaml
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
@@ -187,4 +188,18 @@ spec:
       containerConcurrency: 5
       containers:
       - image: maeddes/quarkus-hello
- ```
+```
+
+```yaml
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: concurrency-demo
+  namespace: default
+spec:
+  template:
+    spec:
+      containerConcurrency: 1
+      containers:
+      - image: maeddes/simpleweb:v0.1
+```
