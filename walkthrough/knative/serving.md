@@ -97,6 +97,30 @@ curl -H "Host: quarkus-knative.default.example.com" 51.145.133.17/fail
 dial tcp 127.0.0.1:8080: connect: connection refused
 ```
 
+Multiple revisions
+
+```
+kn service update demo --image=maeddes/simpleweb:v0.2
+```
+
+```
+kn revision list
+```
+
+Split the traffic
+
+```
+kn service update demo --traffic @latest=25 --traffic demo-zfxjl-1=75
+```
+
+Full switch of traffic
+
+```
+kn service update demo --traffic @latest=100 
+```
+
+
+
 Mass scale
 
 Edit the configuration `kubectl edit ksvc quarkus-knative`
@@ -174,7 +198,7 @@ spec:
           value: "value"
 ```
  
- Backup
+Backup
  
 ```yaml
 apiVersion: serving.knative.dev/v1
