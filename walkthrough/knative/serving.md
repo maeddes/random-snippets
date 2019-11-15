@@ -7,6 +7,7 @@ Use kn cli to deploy first application:
 ```
 kn service create quarkus-knative --image=maeddes/quarkus-hello
 ```
+
 ```
 Service 'quarkus-knative' successfully created in namespace 'default'.
 Waiting for service 'quarkus-knative' to become ready ...OK
@@ -225,3 +226,4 @@ spec:
       containers:
       - image: maeddes/simpleweb:v0.1
 ```
+
