@@ -100,7 +100,7 @@ dial tcp 127.0.0.1:8080: connect: connection refused
 Multiple revisions
 
 ```
-kn service update demo --image=maeddes/simpleweb:v0.2
+kn service update demo --image=maeddes/quarkus-hello:v0.2
 ```
 
 ```
@@ -110,7 +110,7 @@ kn revision list
 Split the traffic
 
 ```
-kn service update demo --traffic @latest=25 --traffic demo-zfxjl-1=75
+kn service update demo --traffic @latest=25 --traffic quarkus-knative-zfxjl-1=75
 ```
 
 Full switch of traffic
@@ -118,8 +118,6 @@ Full switch of traffic
 ```
 kn service update demo --traffic @latest=100 
 ```
-
-
 
 Mass scale
 
