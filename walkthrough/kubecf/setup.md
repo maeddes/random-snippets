@@ -12,6 +12,9 @@ https://github.com/kubernetes-sigs/kind/releases
 kind create cluster --name kubecf --image kindest/node:latest
 kind create cluster --name kubecf --image kindest/node:v1.15.11
 
+node_ip=$(kubectl get node kind-control-plane --output jsonpath='{ .status.addresses[?(@.type == "InternalIP")].address }')
+
+
 ## kubecf
 
 ### cf operator
@@ -28,8 +31,6 @@ helm install cf-operator --namespace cf-operator --set "global.operator.watchNam
 
 https://github.com/cloudfoundry-incubator/kubecf
 
-node_ip=$(kubectl get node kind-control-plane --output jsonpath='{ .status.addresses[?(@.type == "InternalIP")].address }')
-
 cat << _EOF_  > values.yaml
 system_domain: ${node_ip}.nip.io
 services:
@@ -37,8 +38,18 @@ services:
     externalIPs:
     - ${node_ip}
 kube:
-  service_cluster_ip_range: 0.0.0.0/0
-  pod_cluster_ip_range: 0.0.0.0/0
+  service_cluster_ip_range: 10.100.0.0/16
+  pod_cluster_ip_range: 192.16.0.0/16
+features:
+  eirini:
+    enabled: true
 _EOF_
 
 helm install kubecf --namespace kubecf --values values.yaml https://github.com/cloudfoundry-incubator/kubecf/releases/download/v2.2.2/kubecf-v2.2.2.tgz
+
+### cf-for-k8s
+
+https://starkandwayne.com/blog/deploy-cf-for-k8s-to-google-in-10-minutes/
+https://tanzu.vmware.com/developer/guides/kubernetes/cf4k8s-gs/
+https://github.com/cloudfoundry/cf-for-k8s/blob/master/docs/deploy.md
+https://github.com/dbbaskette/tas-on-kind
