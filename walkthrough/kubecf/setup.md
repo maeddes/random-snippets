@@ -17,6 +17,8 @@ node_ip=$(kubectl get node kind-control-plane --output jsonpath='{ .status.addre
 
 ## kubecf
 
+https://kubecf.suse.dev/docs/getting-started/kubernetes-deploy/
+
 ### cf operator
 
 https://github.com/cloudfoundry-incubator/kubecf/releases
