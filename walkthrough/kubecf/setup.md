@@ -32,6 +32,7 @@ helm install cf-operator --namespace cf-operator --set "global.operator.watchNam
 ### kubecf
 
 https://github.com/cloudfoundry-incubator/kubecf
+https://github.com/cloudfoundry-incubator/kubecf/blob/master/deploy/helm/kubecf/values.yaml
 
 cat << _EOF_  > values.yaml
 system_domain: ${node_ip}.nip.io
