@@ -54,3 +54,4 @@ https://tanzu.vmware.com/developer/guides/kubernetes/cf4k8s-gs/
 https://github.com/cloudfoundry/cf-for-k8s/blob/master/docs/deploy.md
 https://github.com/dbbaskette/tas-on-kind
 https://github.com/nrekretep/k8s-dev-cluster/blob/master/cf-for-k8s.md
+https://github.com/cloudfoundry/cf-for-k8s/blob/master/docs/deploy-local.md
