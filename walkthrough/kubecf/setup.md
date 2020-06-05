@@ -50,8 +50,32 @@ helm install kubecf --namespace kubecf --values values.yaml https://github.com/c
 ### cf-for-k8s
 
 https://starkandwayne.com/blog/deploy-cf-for-k8s-to-google-in-10-minutes/
-https://tanzu.vmware.com/developer/guides/kubernetes/cf4k8s-gs/
+
 https://github.com/cloudfoundry/cf-for-k8s/blob/master/docs/deploy.md
 https://github.com/dbbaskette/tas-on-kind
 https://github.com/nrekretep/k8s-dev-cluster/blob/master/cf-for-k8s.md
 https://github.com/cloudfoundry/cf-for-k8s/blob/master/docs/deploy-local.md
+
+Deploy all pre-reqs
+
+1. Run on KIND
+
+kapp: Error: waiting on reconcile deployment/cf-api-kpack-watcher (apps/v1) namespace: cf-system:
+  Finished unsuccessfully (Deployment is not progressing: ProgressDeadlineExceeded (message: ReplicaSet "cf-api-kpack-watcher-58d96dcd45" has timed out progressing.))
+
+Stuck here:
+cf-system            pod/cf-api-deployment-updater-74f9c99b76-xsmxz   0/2     PodInitializing   0          8m29s
+cf-system            pod/cf-api-kpack-watcher-58d96dcd45-cdvkb        0/2     PodInitializing   0          8m29s
+cf-system            pod/cf-api-server-5698f6b86-qk6j9                0/5     PodInitializing   0          8m16s
+
+Re-run:
+
+kapp: Error: waiting on reconcile job/ccdb-migrate (batch/v1) namespace: cf-system:
+  Finished unsuccessfully (Failed with reason BackoffLimitExceeded: Job has reached the specified backoff limit)
+
+2. Run on Docker for Mac (K8s)
+
+First run takes much time for Istio images, repeat of cf components hang in init phase long
+All components come up, but no entry point defined. Everything as ClusterIP
+
+
