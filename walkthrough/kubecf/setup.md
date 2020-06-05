@@ -47,7 +47,30 @@ features:
     enabled: true
 _EOF_
 
+Docker Desktop Windows working version:
+
+helm install cf-operator --namespace cf-operator --set "global.operator.watchNamespace=kubecf" https://s3.amazonaws.com/cf-operators/release/helm-charts/cf-operator-4.5.6%2B0.gffc6f942.tgz
+
 helm install kubecf --namespace kubecf --values values.yaml https://github.com/cloudfoundry-incubator/kubecf/releases/download/v2.2.2/kubecf-v2.2.2.tgz
+
+~ » cat values.yaml
+system_domain: system.kubecf
+
+kube:
+  service_cluster_ip_range: 10.100.0.0/16
+  pod_cluster_ip_range: 192.168.0.0/16
+
+features:
+  eirini:
+    enabled: true
+    
+  SYSTEM_DOMAIN=$(kubectl get secret var-system-domain -n kubecf -ojsonpath='{.data.value}' | base64 --decode)
+  
+  ADMIN_PASSWORD=$(kubectl get secret var-cf-admin-password -n kubecf -ojsonpath='{.data.password}' | base64 --decode)
+  
+  cf login -a https://api.$SYSTEM_DOMAIN --skip-ssl-validation -u admin -p $ADMIN_PASSWORD
+  
+  using /etc/hosts
 
 ### cf-for-k8s
 
@@ -80,4 +103,5 @@ kapp: Error: waiting on reconcile job/ccdb-migrate (batch/v1) namespace: cf-syst
 First run takes much time for Istio images, repeat of cf components hang in init phase long
 All components come up, but no entry point defined. Everything as ClusterIP
 
+Remove Ingress psrt in ytt call
 
