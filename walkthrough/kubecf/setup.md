@@ -106,3 +106,16 @@ All components come up, but no entry point defined. Everything as ClusterIP
 
 Remove Ingress psrt in ytt call
 
+## Azure
+
+az aks create --resource-group mhs-rg --name cf-for-k8s --node-count 1 --kubernetes-version 1.15.11 --node-vm-size Standard_F8s_v2
+az network public-ip create --resource-group mhs-rg --name CFPublicIP --sku Standard --allocation-method static --query publicIp.ipAddress -o tsv
+./hack/generate-values.sh -d 51.137.10.208.xip.io > cf-values-mhs-azure.yml
+istio_static_ip: 51.137.10.208
+
+Failing on obtaining public IP for Istio Load Balancer
+
+kubectl get events -n istio-system
+
+2m30s       Warning   SyncLoadBalancerFailed         service/istio-ingressgateway                   Error syncing load balancer: failed to ensure load balancer: user supplied IP Address 51.137.10.208 was not found in resource group mc_mhs-rg_cf-for-k8s_westeurope
+
