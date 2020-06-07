@@ -119,3 +119,5 @@ kubectl get events -n istio-system
 
 2m30s       Warning   SyncLoadBalancerFailed         service/istio-ingressgateway                   Error syncing load balancer: failed to ensure load balancer: user supplied IP Address 51.137.10.208 was not found in resource group mc_mhs-rg_cf-for-k8s_westeurope
 
+workaround: Create the cluster and then put the static IP into the generated resource group
+
