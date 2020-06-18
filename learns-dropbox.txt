@@ -1,0 +1,52 @@
+maven settings.xml debug pickup azure devops
+
+maven -X
+...
+[DEBUG] Reading global settings from /usr/share/apache-maven-3.6.3/conf/settings.xml
+[DEBUG] Reading user settings from /home/vsts/.m2/settings.xml
+
+maven caching
+
+https://docs.microsoft.com/en-us/azure/devops/pipelines/release/caching?view=azure-devops
+
+variables:
+  MAVEN_CACHE_FOLDER: $(Pipeline.Workspace)/.m2/repository
+  MAVEN_OPTS: '-Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
+
+steps:
+- task: Cache@2
+  inputs:
+    key: 'maven | "$(Agent.OS)" | **/pom.xml'
+    restoreKeys: |
+      maven | "$(Agent.OS)"
+      maven
+    path: $(MAVEN_CACHE_FOLDER)
+  displayName: Cache Maven local repo
+
+- script: mvn install -B -e
+
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    mavenOptions: '-Xmx3072m $(MAVEN_OPTS)'
+    
+    - task: Cache@2
+      displayName: Maven Repository Cache
+      condition: eq('A', 'A')
+      inputs:
+        key: 'maven | "$(Agent.OS)" | **/pom.xml'
+        restoreKeys: |
+          maven | "$(Agent.OS)"
+          maven
+        path: $HOME/.m2/repository
+
+    - task: AzureCLI@2
+      displayName: 'Build Maven CLI'
+      condition: eq('A', 'A')
+      inputs:
+        azureSubscription: 'AzureRMwithPowerSP'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          set -x
+          mvn -B -e -X -Dmaven.repo.local=$HOME/.m2/repository -Dmaven.test.skip=true package
