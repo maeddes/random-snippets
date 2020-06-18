@@ -50,3 +50,31 @@ steps:
         inlineScript: |
           set -x
           mvn -B -e -X -Dmaven.repo.local=$HOME/.m2/repository -Dmaven.test.skip=true package
+          
+          
+CNB:
+/layers/paketo-buildpacks_maven/cache/repository
+/home/cnb/.m2/repository
+
+mvn -B -e -X -Dmaven.repo.local=/home/vsts/work/1/.m2/repository -Dmaven.test.skip=true package
+
+Working:
+mkdir -p mkdir maven/metadata && mkdir -p maven/secret
+echo "maven" > maven/metadata/kind
+cp -p $HOME/.m2/settings.xml maven/secret/settings.xml
+tree maven 
+cat maven/secret/settings.xml
+export BP_JVM_VERSION=8
+export BP_MAVEN_BUILD_ARGUMENTS="clean install -Dassertj.skip=true -Dmaven.test.skip=true"
+export BP_MAVEN_BUILT_ARTIFACT=/yyy-app/target/yyy-app-0.8.15-SNAPSHOT.jar
+./pack build xxx/yyy -p . --builder gcr.io/paketo-buildpacks/builder:base --env "BP_MAVEN_BUILT_ARTIFACT" --env "BP_JVM_VERSION" --env "BP_MAVEN_BUILD_ARGUMENTS" --volume $PWD/maven:/bindings/maven -v
+
+
+Test:
+export BP_MAVEN_BUILD_ARGUMENTS="clean install -Dassertj.skip=true -Dmaven.test.skip=true -Dmaven.repo.local=/platform/.m2/repository"
+
+pack build slonline/kalkulation -p . --builder gcr.io/paketo-buildpacks/builder:base --env BP_MAVEN_BUILD_ARGUMENTS --env BP_JVM_VERSION --env BP_MAVEN_BUILT_ARTIFACT -v --volume $PWD/maven:/bindings/maven --volume ~/.m2:/.m2
+
+Fails:
+Failed to write tracking file /platform/.m2/repository/org/assertj/assertj-core/resolver-status.properties
+[builder] java.io.FileNotFoundException: /platform/.m2/repository/org/assertj/assertj-core/resolver-status.properties (Read-only file system)
