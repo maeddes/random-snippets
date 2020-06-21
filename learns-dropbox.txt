@@ -78,3 +78,20 @@ pack build slonline/kalkulation -p . --builder gcr.io/paketo-buildpacks/builder:
 Fails:
 Failed to write tracking file /platform/.m2/repository/org/assertj/assertj-core/resolver-status.properties
 [builder] java.io.FileNotFoundException: /platform/.m2/repository/org/assertj/assertj-core/resolver-status.properties (Read-only file system)
+
+---
+
+OBS Zoom
+
+https://obsproject.com/
+
+https://obsproject.com/wiki/OBS-Studio-Quickstart
+
+https://support.shinywhitebox.com/hc/en-us/articles/204161459-Installing-iShowU-Audio-Capture
+
+https://obsproject.com/forum/resources/obs-virtualcam.949/
+https://streamshark.io/blog/using-obs-as-a-virtual-webcam-on-windows-and-macos/
+
+< 5.0.4 no virtual camera support
+
+https://obsproject.com/forum/threads/using-obs-to-stream-to-zoom-zoom-us.105410/
