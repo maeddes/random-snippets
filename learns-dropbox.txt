@@ -95,3 +95,29 @@ https://streamshark.io/blog/using-obs-as-a-virtual-webcam-on-windows-and-macos/
 < 5.0.4 no virtual camera support
 
 https://obsproject.com/forum/threads/using-obs-to-stream-to-zoom-zoom-us.105410/
+
+---
+
+    - script: |
+        set -x
+        pwd
+        ls -altr
+        echo Pipeline.Workspace $(Pipeline.Workspace)
+        echo Agent.HomeDirectory $(Agent.HomeDirectory)
+        echo Build.ArtifactStagingDirectory $(Build.ArtifactStagingDirectory)
+        echo Build.Repository.LocalPath $(Build.Repository.LocalPath)
+        echo System.DefaultWorkingDirectory $(System.DefaultWorkingDirectory)
+        echo user.home $(user.home)
+        echo HOME $HOME
+        ls $(Pipeline.Workspace)/.m2/
+        cat /home/vsts/work/_temp/settings.xml
+        cat /home/vsts/.m2/settings.xml
+        ls -altr /home/vsts/work/_temp  
+        ls -altr /home/vsts/work/1/ 
+        ls -altr /home/vsts/work/
+        git config --list  
+        ls -altr /home/vsts   
+        ls -altr /home/vsts/.m2/   
+        echo hallo
+      displayName: 'Show env'
+      condition: always()
