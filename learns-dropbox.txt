@@ -197,5 +197,6 @@ To https://github.com/maeddes/maeddes.github.io.git
    3fc9b88..f0337a9  master -> master
 
 https://gohugo.io/hosting-and-deployment/hosting-on-github/
+https://github.com/gohugoio/HugoBasicExample
 
 
