@@ -167,7 +167,35 @@ Cloning into '/Users/matthiashaeussler/git/wip/blog/themes/meme'...
  8ebbfa81a5a517038b24e20768b8db2dda812649 themes/meme (heads/master)
  
 *[master][~/git/wip/blog]$ git add .
-*[master][~/git/wip/blog]$ git commit -m "first"
-[master (root-commit) 630043b] first
+*[master][~/git/wip/blog]$ git commit -m "first content"
+
+[master][~/git/wip/blog]$ hugo
+
+                   | EN
+-------------------+-----
+  Pages            | 10
+  Paginator pages  |  0
+  Non-page files   |  0
+  Static files     | 10
+  Processed images |  0
+  Aliases          |  1
+  Sitemaps         |  1
+  Cleaned          |  0
+
+Total in 134 ms
+
+[master][~/git/wip/blog]$ cd public
+*[master][~/git/wip/blog/public]$ git add .
+*[master][~/git/wip/blog/public]$ git commit -m "First page"
+[master f0337a9] First page
+..
+
+[master][~/git/wip/blog/public]$ git push origin master
+Enumerating objects: 32, done.
+..
+To https://github.com/maeddes/maeddes.github.io.git
+   3fc9b88..f0337a9  master -> master
+
+https://gohugo.io/hosting-and-deployment/hosting-on-github/
 
 
