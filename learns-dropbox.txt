@@ -121,3 +121,53 @@ https://obsproject.com/forum/threads/using-obs-to-stream-to-zoom-zoom-us.105410/
         echo hallo
       displayName: 'Show env'
       condition: always()
+      
+---
+
+github - hugo
+
+cleanup git repo for page:
+*[master][~/git/wip/maeddes.github.io]$ git rm -r . -f
+[master][~/git/wip/maeddes.github.io]$ git commit -m "cleanup"
+[master][~/git/wip/maeddes.github.io]$ git push origin master
+
+Create new dir - blog
+
+[~/git/wip]$ hugo new site blog
+Congratulations! Your new Hugo site is created in /Users/matthiashaeussler/git/wip/blog.
+
+[~/git/wip]$ cd blog
+[~/git/wip/blog]$ git init
+Initialized empty Git repository in /Users/matthiashaeussler/git/wip/blog/.git/
+
+*[master][~/git/wip/blog]$ git submodule add -b master https://github.com/maeddes/maeddes.github.io.git public
+Cloning into '/Users/matthiashaeussler/git/wip/blog/public'...
+
+*[master][~/git/wip/blog]$ git submodule add --depth 1 https://github.com/reuixiy/hugo-theme-meme.git themes/meme
+
+*[master][~/git/wip/blog]$ hugo new "posts/hello-world.md"
+/Users/matthiashaeussler/git/wip/blog/content/posts/hello-world.md created
+
+*[master][~/git/wip/blog]$ cat content/posts/hello-world.md
+---
+title: "Hello World"
+date: 2020-06-28T10:11:28+02:00
+draft: true
+---
+
+*[master][~/git/wip/blog]$ sed -i '' 's/true/false/g'  content/posts/hello-world.md
+
+*[master][~/git/wip/blog]$ git submodule add --depth 1 https://github.com/reuixiy/hugo-theme-meme.git themes/meme
+Cloning into '/Users/matthiashaeussler/git/wip/blog/themes/meme'...
+
+*[master][~/git/wip/blog]$ rm config.toml && cp themes/meme/config-examples/en/config.toml config.toml
+
+*[master][~/git/wip/blog]$ git submodule
+ 846f6e4fac007bde2a826d99747dd15dd6630be2 public (heads/master)
+ 8ebbfa81a5a517038b24e20768b8db2dda812649 themes/meme (heads/master)
+ 
+*[master][~/git/wip/blog]$ git add .
+*[master][~/git/wip/blog]$ git commit -m "first"
+[master (root-commit) 630043b] first
+
+
