@@ -235,5 +235,12 @@ openjdk version "14.0.1" 2020-04-14
 OpenJDK Runtime Environment (build 14.0.1+14)
 OpenJDK 64-Bit Server VM (build 14.0.1+14, mixed mode, sharing)
 
+https://stackoverflow.com/questions/21964709/how-to-set-or-change-the-default-java-jdk-version-on-os-x
+
 ---
 
+https://hub.docker.com/_/openjdk
+https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin#quickstart
+https://stackoverflow.com/questions/19654557/how-to-set-specific-java-version-to-maven
+
+https://spring.io/blog/2020/01/27/creating-docker-images-with-spring-boot-2-3-0-m1
