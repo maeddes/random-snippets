@@ -246,3 +246,5 @@ https://stackoverflow.com/questions/19654557/how-to-set-specific-java-version-to
 https://spring.io/blog/2020/01/27/creating-docker-images-with-spring-boot-2-3-0-m1
 
 https://stackoverflow.com/questions/79764/wildcard-subdomains
+
+https://stackoverflow.com/questions/4421633/who-is-listening-on-a-given-tcp-port-on-mac-os-x
