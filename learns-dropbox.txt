@@ -244,3 +244,5 @@ https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin#quickst
 https://stackoverflow.com/questions/19654557/how-to-set-specific-java-version-to-maven
 
 https://spring.io/blog/2020/01/27/creating-docker-images-with-spring-boot-2-3-0-m1
+
+https://stackoverflow.com/questions/79764/wildcard-subdomains
