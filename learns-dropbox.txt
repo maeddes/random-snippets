@@ -240,6 +240,7 @@ https://stackoverflow.com/questions/21964709/how-to-set-or-change-the-default-ja
 ---
 
 https://hub.docker.com/_/openjdk
+https://hub.docker.com/r/adoptopenjdk/openjdk11
 https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin#quickstart
 https://stackoverflow.com/questions/19654557/how-to-set-specific-java-version-to-maven
 
