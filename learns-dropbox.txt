@@ -249,3 +249,21 @@ https://spring.io/blog/2020/01/27/creating-docker-images-with-spring-boot-2-3-0-
 https://stackoverflow.com/questions/79764/wildcard-subdomains
 
 https://stackoverflow.com/questions/4421633/who-is-listening-on-a-given-tcp-port-on-mac-os-x
+
+---
+
+https://xplus3.net/2020/06/09/mutagen-caching-docker/
+
+*[master][~/git/wip/suedleasing/deployconfig/charts]$ ls ~/Library/Containers/com.docker.docker/Data/
+backend-for-guest.sock=  docker.sock=             memlogdq.sock=           vpnkit.diag.sock=
+backend.sock=            filesystem-event.sock=   mutagen.sock=            vpnkit.eth.sock=
+default.profraw          filesystem-export.sock=  osxfs.sock=              vpnkit.pcap.sock=
+diagnosticd.sock=        filesystem-volume.sock=  task.lock                vpnkit.port.sock=
+docker-api.sock=         gui-api.sock=            tasks/
+docker-cli.sock=         lifecycle-server.sock=   vms/
+
+---
+
+
+
+
