@@ -1,0 +1,10 @@
+FROM maeddes/gradle-builder:v0.3
+
+# copy the project files
+COPY ./ ./
+
+# build for releaseA
+RUN gradle build -PskipITs=true -Partifactory_user=mhaeussler@pp7.onmicrosoft.com -Partifactory_password=AKCp8hyPw3qM4tKDqMvYVVQJYyG2PgLY8DA1EvGuPBNAFf3inQB3rR6QWAMNURSvTS8FzK7Rj
+
+# set the startup command to run your binary
+CMD ["java", "-jar", "webleasco-server/target/webleasco-server-master-SNAPSHOT-executable.jar"]

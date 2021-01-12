@@ -1,0 +1,10 @@
+FROM gradle AS BUILDER
+
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+    && apt-get install -y nodejs \
+    && gradle -v \
+    && npm --version
+
+FROM BUILDER AS GRADLE
+
+COPY ./ ./
