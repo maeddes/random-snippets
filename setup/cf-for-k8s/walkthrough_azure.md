@@ -1,6 +1,7 @@
 az group create --name cf-for-k8s-rg --location westeurope
 
 az aks create --resource-group cf-for-k8s-rg --name cf-for-k8s --node-count 5 --node-vm-size Standard_D2s_v4 --generate-ssh-keys
+az aks create --resource-group cf-for-k8s-rg --name cf-for-k8s --node-count 3 --node-vm-size Standard_E8_v3 --generate-ssh-keys
 
 az group list -o table
 
@@ -31,4 +32,12 @@ load_balancer:
   
  get K8s context (point kubectl to cluster) 
   
- az aks get-credentials -n cf-for-k8s -g mhs-cf-for-k8s-new-rg
+ az aks get-credentials -n cf-for-k8s -g cf-for-k8s-new-rg
+ 
+ ytt -f config -f ./cf-azure-values.yml > kapp-rendered.yml
+ 
+ change service type from NodePort to LoadBalancer
+ 
+ sed -i '' 's/NodePort/LoadBalancer/g' kapp-rendered.yml
+ 
+ kapp deploy -a cf -f kapp-rendered.yml
