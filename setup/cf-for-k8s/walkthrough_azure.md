@@ -32,7 +32,7 @@ load_balancer:
   
  get K8s context (point kubectl to cluster) 
   
- az aks get-credentials -n cf-for-k8s -g cf-for-k8s-new-rg
+ az aks get-credentials -n cf-for-k8s -g cf-for-k8s-rg
  
  ytt -f config -f ./cf-azure-values.yml > kapp-rendered.yml
  
