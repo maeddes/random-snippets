@@ -1,0 +1,48 @@
+# Core Concepts
+
+fully qualified names
+
+label - selector parity
+
+api version
+
+yaml structure
+
+--help
+--dry-run=client
+
+kubectl run redis --image=redis -l tier=db --port=8080
+kubectl expose pod redis --port=6379 --name=redis-service --selector='tier=db'
+kubectl create deployment webapp --image=kodekloud/webapp-color --replicas=3 -n dev-ns
+
+# Configuration
+
+spec:
+  containers:
+  - name: ubuntu
+    image: ubuntu
+    command:
+    - sleep
+    - "1200"
+    
+spec:
+  containers:
+  - name: simple-webapp
+    image: kodekloud/webapp-color
+    args: ["--color", "green"]
+
+spec:
+  containers:
+  - name: simple-webapp
+    image: kodekloud/webapp-color
+    command: ["--color","green"]
+    
+spec:
+  containers:
+  - env:
+    - name: APP_COLOR
+      value: green
+    image: kodekloud/webapp-color
+    name: webapp-color
+    
+ config maps create & env-from !!
