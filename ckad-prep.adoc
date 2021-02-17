@@ -17,7 +17,7 @@ kubectl create deployment webapp --image=kodekloud/webapp-color --replicas=3 -n 
 
 # Configuration
 
-```
+```yaml
 spec:
   containers:
   - name: ubuntu
@@ -45,6 +45,17 @@ spec:
       value: green
     image: kodekloud/webapp-color
     name: webapp-color
+    
+    
+ spec:
+  containers:
+    - name: test-container
+      image: k8s.gcr.io/busybox
+      command: [ "/bin/sh", "-c", "env" ]
+      envFrom:
+      - configMapRef:
+          name: special-config
+ 
  ``` 
  
  config maps create & env-from !!
