@@ -49,6 +49,8 @@ spec:
   - name: simple-webapp
     image: kodekloud/webapp-color
     args: ["--color", "green"]
+    
+```
 
 spec:
   containers:
@@ -78,3 +80,4 @@ spec:
  ```
  
  config maps create & env-from !!
+ secrets types
