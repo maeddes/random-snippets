@@ -45,5 +45,6 @@ spec:
       value: green
     image: kodekloud/webapp-color
     name: webapp-color
- ```
+ ``` 
+ 
  config maps create & env-from !!
