@@ -17,6 +17,7 @@ kubectl create deployment webapp --image=kodekloud/webapp-color --replicas=3 -n 
 
 # Configuration
 
+```
 spec:
   containers:
   - name: ubuntu
@@ -44,5 +45,5 @@ spec:
       value: green
     image: kodekloud/webapp-color
     name: webapp-color
-    
+ ```
  config maps create & env-from !!
