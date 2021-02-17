@@ -17,6 +17,11 @@ kubectl create deployment webapp --image=kodekloud/webapp-color --replicas=3 -n 
 
 # Configuration
 
+```
+xxx
+```
+
+
 ```yaml
 spec:
   containers:
